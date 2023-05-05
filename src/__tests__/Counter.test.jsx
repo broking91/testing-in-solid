@@ -10,19 +10,20 @@ describe('counter', function () {
         render(() => <Counter />);
         const span=screen.getByText('0');
         expect(span).toBeInTheDocument();
-        // expect(span).toHaveTextContent("0");
+        expect(span).toHaveTextContent("0");
 
     });
-    // it("increses with click",async()=>{
-    //     render(() => <Counter />);
-    //     const button=screen.getByRole('button');
+    it("increments with click",async()=>{
+        render(() => <Counter />);
+        const button=screen.getByRole('button');
+        const span=screen.getByText('0');
 
-    //     fireEvent.click(button);
-    //     await Promise.resolve();
-    //     expect(button).toHaveTextContent("Count: 1");
+        fireEvent.click(button);
+        await Promise.resolve();
+        expect(span).toHaveTextContent("1");
 
-    //     fireEvent.click(button);
-    //     await Promise.resolve();
-    //     expect(button).toHaveTextContent("Count: 2");
-    // });
+        fireEvent.click(button);
+        await Promise.resolve();
+        expect(span).toHaveTextContent("2");
+    });
 });
